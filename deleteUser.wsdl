@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="urn:deleteUser" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="urn:deleteUser" xmlns:intf="urn:deleteUser" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+
+   <wsdl:message name="deleteUserInfoRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteUserInfoResponse">
+
+      <wsdl:part name="deleteUserInfoReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="IDeleteUserInfoMgr">
+
+      <wsdl:operation name="deleteUserInfo" parameterOrder="in0">
+
+         <wsdl:input message="impl:deleteUserInfoRequest" name="deleteUserInfoRequest"/>
+
+         <wsdl:output message="impl:deleteUserInfoResponse" name="deleteUserInfoResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="deleteUserSoapBinding" type="impl:IDeleteUserInfoMgr">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="deleteUserInfo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteUserInfoRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:deleteUser" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteUserInfoResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:deleteUser" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="IDeleteUserInfoMgrService">
+
+      <wsdl:port binding="impl:deleteUserSoapBinding" name="deleteUser">
+
+         <wsdlsoap:address location="http://122.228.202.163:8080/UserWebService/services/deleteUser"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

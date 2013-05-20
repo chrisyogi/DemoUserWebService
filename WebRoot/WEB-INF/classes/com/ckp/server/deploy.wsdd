@@ -1,0 +1,27 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from sayHelloToCkpService WSDL service -->
+
+  <service name="ckp" provider="java:RPC" style="rpc" use="encoded">
+      <parameter name="wsdlTargetNamespace" value="urn:ckp"/>
+      <parameter name="wsdlServiceElement" value="sayHelloToCkpService"/>
+      <parameter name="wsdlServicePort" value="ckp"/>
+      <parameter name="className" value="com.ckp.server.CkpSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="sayHelloToCkp"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="sayHello" qname="operNS:sayHello" xmlns:operNS="urn:ckp" returnQName="sayHelloReturn" returnType="rtns:string" xmlns:rtns="http://schemas.xmlsoap.org/soap/encoding/" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="sayHello"/>
+
+  </service>
+</deployment>

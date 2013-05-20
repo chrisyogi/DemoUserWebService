@@ -1,0 +1,28 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from IDeleteUserInfoMgrService WSDL service -->
+
+  <service name="deleteUser" provider="java:RPC" style="rpc" use="encoded">
+      <parameter name="wsdlTargetNamespace" value="urn:deleteUser"/>
+      <parameter name="wsdlServiceElement" value="IDeleteUserInfoMgrService"/>
+      <parameter name="wsdlServicePort" value="deleteUser"/>
+      <parameter name="className" value="com.scholat.server.DeleteUserSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="IDeleteUserInfoMgr"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="deleteUserInfo" qname="operNS:deleteUserInfo" xmlns:operNS="urn:deleteUser" returnQName="deleteUserInfoReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </operation>
+      <parameter name="allowedMethods" value="deleteUserInfo"/>
+
+  </service>
+</deployment>
